@@ -10,9 +10,10 @@ import { Link, Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 
 import { DocumentationView } from './components/views/documentation-view';
 import { PlaygroundView } from './components/views/playground-view';
 import { RepositoryView } from './components/views/repository-view';
+import { KanbanView } from './components/views/kanban-view';
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, useSidebar } from './components/ui/sidebar';
 import { TooltipProvider } from './components/ui/tooltip';
-import { File, Play, FolderGit2, Plus, Check, Trash2, GalleryVerticalEnd } from 'lucide-react';
+import { File, Play, FolderGit2, Plus, Check, Trash2, GalleryVerticalEnd, KanbanSquare } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './components/ui/dropdown-menu';
 import * as React from "react"
 import { api } from './lib/api';
@@ -24,6 +25,13 @@ const workspaces = [
     icon: Play, 
     component: PlaygroundView,
     matchPath: '/play'
+  },
+  { 
+    title: "Доска", 
+    url: "/board", 
+    icon: KanbanSquare, 
+    component: KanbanView,
+    matchPath: '/board'
   },
   { 
     title: "Репозиторий", 
