@@ -1,0 +1,18 @@
+services:
+  hub:
+    build: .
+    container_name: gamedev-hub
+    ports:
+      - "8000:8000"
+    volumes:
+      # Репозиторий игры и база kanban живут на хосте — переживают пересоздание контейнера.
+      - ./data:/data
+    environment:
+      # Команда кнопки «Собрать» (выполняется в корне репозитория).
+      # По умолчанию запускается build.sh из репозитория — положите туда экспорт Godot.
+      BUILD_CMD: "bash build.sh"
+      # Куда экспортируется HTML5-билд (относительно репозитория).
+      BUILD_OUTPUT: "build/web"
+      # Каталог wiki-страниц внутри репозитория.
+      DOCS_DIR: "docs"
+    restart: unless-stopped
